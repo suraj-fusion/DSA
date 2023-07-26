@@ -7,17 +7,19 @@ class Solution {
         {
             if(nums[i]==0)
             {
-                ans=Math.max(ans,count);
+
                 count=0;
             }
             else
             {
                 count++;
             }
+            ans=Math.max(count,ans);
         }
 
-        ans=Math.max(ans,count);
         return ans;
+
+       
 
 
     }
