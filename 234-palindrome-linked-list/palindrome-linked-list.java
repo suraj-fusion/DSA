@@ -10,30 +10,38 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        StringBuilder res= new StringBuilder();
-        ListNode temp=head;
-        while(temp!=null)
-        {
-            res.append(temp.val);
-            temp=temp.next;       
-        }
-       
-        String res2=res.toString();
-        StringBuilder rev=res.reverse();
+       //find the middle of the ll
+       ListNode fast=head;
+       ListNode slow=head;
+       while(fast.next!=null &&  fast.next.next!=null  )
+       {
+           fast=fast.next.next;
+           slow=slow.next;
+       }
 
-        String rev2=rev.toString();
-      
-
-       
-        if(res2.equals(rev2))
+       ListNode prev=null;
+       ListNode temp=slow.next;
+       while(temp!=null)
         {
-            return true;
+            ListNode n=temp.next;
+            temp.next=prev;
+            prev=temp;
+            temp=n;
         }
-        else
+        slow.next=prev;
+        slow=slow.next;
+        ListNode dum=head;
+        while(slow!=null)
         {
-            return false;
+            if(dum.val!=slow.val)
+            {
+                  return false;
+            }
+            slow=slow.next;
+            dum=dum.next;
         }
         
+        return true;
        
     }
 }
