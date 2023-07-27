@@ -17,14 +17,15 @@ class Solution {
             res.append(temp.val);
             temp=temp.next;       
         }
-         String res2=res.toString();
-        String rev="";
-        for(int i=0;i<res.length();i++)
-        {
-            rev=res2.charAt(i)+rev;        
-        }
+       
+        String res2=res.toString();
+        StringBuilder rev=res.reverse();
 
-        if(res2.equals(rev))
+        String rev2=rev.toString();
+      
+
+       
+        if(res2.equals(rev2))
         {
             return true;
         }
