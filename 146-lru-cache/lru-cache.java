@@ -10,27 +10,40 @@ class LRUCache {
         
     }
     
-   public int get(int key) {
-    if (!hm.containsKey(key)) {
-        return -1;
-    } else {
-        Node temp = hm.get(key);
-        if (temp != tail) {
-            if (temp == head) {
-                head = head.next;
-            } else {
-                temp.prev.next = temp.next;
-                temp.next.prev = temp.prev;
-            }
-            tail.next = temp;
-            temp.prev = tail;
-            temp.next = null;
-            tail = temp;
+    public int get(int key) {
+       
+        if(!hm.keySet().contains(key))
+        {
+            return -1;
         }
-        return temp.value;
-    }
-}
+        else
+        {
+            Node temp=hm.get(key);
+            if(temp!=tail)
+            {
+                if(temp==head)
+                {
+                    head=head.next;
+                }
+                else
+                {
+                    temp.prev.next=temp.next;
+                    temp.next.prev=temp.prev;
+                }
+                tail.next=temp;
+                temp.prev=tail;
+                temp.next=null;
+                tail=temp;
+            }
+           
+           
+            return temp.value;
 
+         }
+        
+        
+        
+    }
     
     public void put(int key, int value) {
         int ans=get(key);
