@@ -24,36 +24,32 @@ class Solution {
        }
        Queue<TreeNode> q= new LinkedList<TreeNode>();
        q.add(root);
-       q.add(null);
-       ArrayList<Integer> al=new ArrayList<Integer>();
-       while(q.size()>1)
+       while(!q.isEmpty())
        {
+         
+         int currsize=q.size();
+         ArrayList<Integer> al=new ArrayList<Integer>();
+         for(int i=0;i<currsize;i++)
+         {
+
            TreeNode x=q.remove();
-           if(x==null)
+          
+           if(x.left!=null)
            {
-              ans.add(al);
-              al=new ArrayList<Integer>();
-              q.add(null);
+                 q.add(x.left);
            }
-           else
+            if(x.right!=null)
            {
-                al.add(x.val);
+                 q.add(x.right);
            }
+           al.add(x.val);
 
+         }
+         ans.add(al);
 
-           if(x!=null && x.left!=null)
-           {
-               q.add(x.left);
-           }
-            if(x!=null && x.right!=null)
-           {
-               q.add(x.right);
-           }
        }
-       ans.add(al);
-       
-
        return ans;
+      
 
 
         
