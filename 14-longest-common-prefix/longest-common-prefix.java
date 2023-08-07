@@ -5,36 +5,21 @@ class Solution {
          {
              return "";
          }
-        String base=strs[0];
-        int common=strs[0].length();
-        for(int i=1;i<strs.length;i++)
-        {
-            String curr=strs[i];
-            int j=0;
-         
-            while(j<base.length() && j<curr.length())
-            {
-                if(base.charAt(j)==curr.charAt(j))
-                {
-                    j++;
-                    
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            common=Math.min(j,common);
-            base=strs[i];
-        }
-
-        String res="";
-        for(int k=0;k<common;k++)
-        {
-            res+=strs[0].charAt(k);
-        }
-        return res;
-        
+         Arrays.sort(strs);
+         int i=0;
+         String res="";
+         while(i<strs[0].length() && i<strs[strs.length-1].length())
+         {
+             if(strs[0].charAt(i)==strs[strs.length-1].charAt(i))
+             {
+                 res+=strs[0].charAt(i);
+                 i++;
+             }
+             else
+             {
+                 break;
+             }
+         }
+         return res;
     }
 }
