@@ -24,7 +24,9 @@ class Solution {
                     break;
                 }
             }
+
             common=Math.min(j,common);
+            base=strs[i];
         }
 
         String res="";
