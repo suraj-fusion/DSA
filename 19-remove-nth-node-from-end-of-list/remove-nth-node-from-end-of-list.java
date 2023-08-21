@@ -35,16 +35,11 @@ class Solution {
       {
           head=temp2.next;
       }
-     else if(temp2!=null)
+     else 
       {
       prev.next=temp2.next;
-     
-      }
-      else
-      {
-          prev.next=temp2;
-      }
       
+      }
       return head;
 
 
