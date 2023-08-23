@@ -16,36 +16,23 @@
 class Solution {
     public TreeNode bstFromPreorder(int[] preorder) {
 
-        TreeNode root=new TreeNode(preorder[0]);
-
-        for(int i=1;i<preorder.length;i++)
-        {
-            TreeNode temp=root;
-            while(true)
-            {
-                if(temp.left==null && preorder[i]<temp.val)
-                {
-                    temp.left=new TreeNode(preorder[i]);
-                    break;
-                    
-                }
-                else if(temp.right==null && preorder[i]>temp.val)
-                {
-                         temp.right=new TreeNode(preorder[i]);
-                         break;
-                }
-                else if (temp.left !=null && preorder[i]<temp.val)
-                {
-                    temp=temp.left;
-                }
-                else if(temp.right!=null && preorder[i]>temp.val)
-                {
-                    temp=temp.right;
-                }
-            }
-        }
-
+        int i []=new int[1];
+        i[0]=0;
+        TreeNode root=create(i,preorder,Integer.MAX_VALUE);
         return root;
-        
+    }
+
+   static  TreeNode create(int i[],int preorder[],int max)
+    {
+          if(i[0]==preorder.length || preorder[i[0]]>max)
+          {
+              return null;
+          }
+
+          TreeNode root = new TreeNode(preorder[i[0]]);
+          i[0]++;
+          root.left=create(i,preorder,root.val);
+          root.right=create(i,preorder,max);
+          return root;
     }
 }
