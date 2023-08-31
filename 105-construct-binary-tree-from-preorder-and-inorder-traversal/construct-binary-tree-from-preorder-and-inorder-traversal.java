@@ -16,38 +16,35 @@
 class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
 
-        int i[]=new int[1];
-        i[0]=0;
-        TreeNode root= build(preorder,inorder, i , 0 , inorder.length-1);
-        return root;
+      TreeNode root=  build(preorder,inorder,0,preorder.length-1,0,inorder.length-1);
+      return root;
         
     }
 
-    TreeNode build(int preorder[] ,int inorder[],int i[],int l,int h )
+   TreeNode build(int preorder[],int inorder[],int prelow,int prehigh,int inlow,int inhigh)
     {
-         if(l>h || i[0]>=preorder.length)
-         {
-             return null;
-         }
-         TreeNode root=new TreeNode(preorder[ i[0] ] );
-         i[0]++;
-         int k=l;
-         for( ;k<=h;k++)
-         {
-             if(inorder[k]==root.val)
-             {
-                break;  
-                 
-             }
-         }
+       if(prelow>prehigh)
+       {
+           return null;
+       }
 
-    
-         root.left=build(preorder,inorder,i,l,k-1);
-        
-    
-         root.right=build(preorder,inorder,i,k+1,h);
-
-         return root;
+       TreeNode root=new TreeNode(preorder[prelow]);
+       int k=inlow;
+       while(true)
+       {
+           if(inorder[k]==root.val)
+           {
+            break;
+           }
+           k++;
+       }
+     
+      int ebk=k-inlow;
+      int efk=inhigh-k;
+      root.left=build(preorder,inorder,prelow+1,prelow+ebk,inlow,k-1);
+      root.right=build(preorder,inorder,prelow+ebk+1,prelow+ebk+efk,k+1,inhigh);
+      return root;
+      
 
     }
 
